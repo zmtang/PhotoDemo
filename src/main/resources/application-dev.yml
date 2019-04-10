@@ -1,0 +1,68 @@
+# Tomcat
+server:
+  tomcat:
+    max-threads: 1024 # 最大worker线程  超过1024的之后的请求只能排队，等待有线程释放后，才能被处理
+    min-spare-threads: 30 # 最小worker线程
+    accept-count: 5000
+    uri-encoding: UTF-8
+  port: 8888
+  connection-timeout: 2000ms # 这个配置会在建立一个socket连接后，如果一直没有收到客户端的FIN，也没有数据过来，那么此连接也必须等到10s后，才能被超时释放，
+  servlet:
+    context-path: /dev
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver # com.mysql.jdbc.Driver # jdbc driver.默认通过uri来自动检测。
+    druid:
+      first: # 数据源1
+        url: jdbc:mysql://47.92.199.56:3306/zmtPhoto?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+        username: root
+        password: 12345@mdc
+      second: # 数据源2
+        url: jdbc:mysql://47.92.199.56:3306/zmtboot?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+        username: root
+        password: 12345@mdc
+      initial-size: 10 # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
+      max-active: 100 # 最大连接池数量
+      min-idle: 10 # 最小连接池数量
+      max-wait: 60000 # 获取连接时最大等待时间，单位毫秒
+      pool-prepared-statements: false # 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      test-while-idle: true # 建议配置为true，不影响性能，并且保证安全性。
+      test-on-borrow: false # 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+      test-on-return: false # 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+#      web-stat-filter: # 配置监控服务器
+#        enabled: true
+#        url-pattern: /*  # 添加过滤规则
+#        exclusions: *.gif,*.png,*.jpg,*.html,*.js,*.css,*.ico,/druid/*    # 忽略过滤格式
+      stat-view-servlet:
+        enabled: true #
+        url-pattern: /druid/*
+        login-username: druid
+        login-password: 123456
+#        allow: 10.20.10.86,127.0.0.1 # 添加IP白名单
+#        deny: 192.168.25.123 # 添加IP黑名单，当白名单和黑名单重复时，黑名单优先级更高
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: false
+        wall:
+          config:
+            multi-statement-allow: true
+
+
+# 七牛配置环境
+qiniu:
+  # 主上传空间（照片上传空间）及连接地址
+  bucket-name: hzlrcs
+  domainOf-Bucket: http://cs.lirenph.com
+  # 合同文件存放空间名及连接地址
+  contract-Bucket-name: hzlrcscontract
+  contract-domain-of-bucket: http://csht.lirenph.com
+  # 缩略图及打包文件空间 及连接地址
+  zip-Bucket-name: hzlrcsthumbnall
+  zip-domain-of-bucket: http://cszip.lirenph.com
+
