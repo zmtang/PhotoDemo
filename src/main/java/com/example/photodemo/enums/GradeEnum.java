@@ -7,18 +7,17 @@ import com.baomidou.mybatisplus.annotation.EnumValue;
  */
 public enum GradeEnum {
 
-    PRIVATE(1,"小学"),
+    PRIVATE(1, "小学"),
     SECONDORY(2, "中学"),
     HIGH(3, "高中");
-
-    GradeEnum(Integer code,String value) {
-        this.code=code;
-        this.value=value;
-    }
 
     @EnumValue  // 标记数据库存的值是 code
     private Integer code;
     private String value;
+    GradeEnum(Integer code, String value) {
+        this.code = code;
+        this.value = value;
+    }
 
     public Integer getCode() {
         return code;

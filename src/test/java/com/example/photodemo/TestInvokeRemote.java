@@ -19,13 +19,13 @@ import java.util.concurrent.CountDownLatch;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TestInvokeRemote {
 
-    private static String url ="http://localhost:8888/dev/getByName?name=赵民堂";
+    private static String url ="http://localhost:8888/dev/aspect/getByName?param=赵民堂";
     // httpclient  便捷访问远程Http服务
     @Autowired
     private RestTemplate rest;  //  RestTemplate rest=new RestTemplate();
 
     // 模拟并发量  用户量
-    private static int USER_NUM=10000;
+    private static int USER_NUM=100;
     //  定义一个多线程发令枪
     private static CountDownLatch cdl=new CountDownLatch(USER_NUM);
 
@@ -50,7 +50,7 @@ public class TestInvokeRemote {
             cdl.countDown();
         }
         // currentThread()  到底是什么？ 其实currentThread() 只是Thread 的一个静态方法。返回的正是执行当前代码指令的线程引用:
-        Thread.currentThread().sleep(55000);
+        Thread.currentThread().sleep(5000);
     }
 
     /**

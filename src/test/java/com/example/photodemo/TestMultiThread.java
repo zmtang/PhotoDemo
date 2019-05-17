@@ -19,13 +19,13 @@ import java.util.concurrent.CountDownLatch;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TestMultiThread {
 
-    private static String url ="http://localhost:8888/dev/getByName?name=赵民堂";
+    private static String url ="http://localhost:8888/dev/aspect/getByName?param=赵民堂";
     // httpclient  便捷访问远程Http服务
     @Autowired
     private RestTemplate rest;  //  RestTemplate rest=new RestTemplate();
 
     // 模拟并发量  用户量
-    private static int USER_NUM=10000;
+    private static int USER_NUM=1000;
     //  定义一个多线程发令枪
     private static CountDownLatch cdl=new CountDownLatch(USER_NUM);
 

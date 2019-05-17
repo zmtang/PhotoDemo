@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 创建service实现类，实现service接口，继承ServiceImpl实现类
+ *
  * @author zmt
  * @date 2019-03-15 15:31
  */
@@ -19,6 +20,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
     /**
      * 根据 name 获取个人信息
      * baseMapper ？？？
+     *
      * @param name
      * @return
      */
@@ -39,7 +41,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
     @Override
     public Boolean insertTwoStudent(Student Student1, Student Student2) {
         this.save(Student1);
-        System.out.println("模拟异常"+5/0);
+        System.out.println("模拟异常" + 5 / 0);
         this.save(Student2);
         return null;
     }

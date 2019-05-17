@@ -1,4 +1,4 @@
-package com.example.photodemo.config;
+package com.example.photodemo.configuration;
 
 import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
@@ -9,11 +9,12 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * mybatis-plus配置
+ *
  * @author zmt
  * @date 2019-03-18 10:31
  */
 @Configuration
-public class MybatisPlusConfig {
+public class MybatisPlusConfiguration {
 
 
     /**

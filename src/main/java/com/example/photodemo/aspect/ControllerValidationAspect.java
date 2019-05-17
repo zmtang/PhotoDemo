@@ -1,9 +1,6 @@
 package com.example.photodemo.aspect;
 
-import com.example.photodemo.entity.Person;
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
 /**

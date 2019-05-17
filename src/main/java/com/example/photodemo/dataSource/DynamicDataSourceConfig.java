@@ -22,26 +22,26 @@ public class DynamicDataSourceConfig {
 
     @Bean
     @ConfigurationProperties("spring.datasource.druid.first")
-    public DataSource firstDataSource(){
+    public DataSource firstDataSource() {
         return DruidDataSourceBuilder.create().build();
     }
 
     @Bean
     @ConfigurationProperties("spring.datasource.druid.second")
-    public DataSource secondDataSource(){
+    public DataSource secondDataSource() {
         return DruidDataSourceBuilder.create().build();
     }
 
     @Bean
-    @Primary
+    @Primary // 优先注入
     public DynamicDataSource dataSource(DataSource firstDataSource, DataSource secondDataSource) {
         /*
          * map中2个元素，与2的n次方最接近的数是2，但是这里如果设置容量为2的话 2/2=1,
          * 已经超过默认加载因子(0.75)的大小了。因此会resize一次，变成4。所以最优的值是4。
-         *
          * https://www.cnblogs.com/tiancai/p/9558895.html
          */
         Map<Object, Object> targetDataSources = new HashMap<>(4);
+
         targetDataSources.put(DataSourceNames.FIRST, firstDataSource);
         targetDataSources.put(DataSourceNames.SECOND, secondDataSource);
         return new DynamicDataSource(firstDataSource, targetDataSources);

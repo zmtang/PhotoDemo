@@ -1,16 +1,17 @@
-package com.example.photodemo.config;
+package com.example.photodemo.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
  * 七牛云配置信息
+ *
  * @author zmt
  * @date 2019-03-19 14:13
  */
 @Component
 @ConfigurationProperties(prefix = "qiniu")
-public class QinNiuConfig {
+public class QinNiuConfiguration {
 
     private String bucketName;
     private String domainOfBucket;

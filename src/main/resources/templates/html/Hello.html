@@ -1,0 +1,26 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试CORS</title>
+    <link rel="stylesheet" href="../../static/css/index.css" type="text/css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+           $("cors").click(function () {
+               alert("123");
+               $.ajax({
+                   url:"http://localhost:8888/dev/cors/test",
+                   type:"get",
+                   success:function (data) {
+                       alert(data);
+                   }
+               })
+           })
+        });
+    </script>
+</head>
+<body>
+    <input type="button" id="cors" value="CORS跨域测试" />
+</body>
+</html>

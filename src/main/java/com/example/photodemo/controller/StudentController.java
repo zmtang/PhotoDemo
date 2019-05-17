@@ -20,22 +20,25 @@ public class StudentController {
 
     /**
      * 获取信息
+     *
      * @return
      */
     @RequestMapping("/get")
-    private Student getStudent(@RequestParam("name") String name){
-        Student student=studentService.getByName(name);
+    private Student getStudent(@RequestParam("name") String name) {
+        Student student = studentService.getByName(name);
         return student;
     }
 
     /**
-     *
+     * @param student
      * @return
      */
     @RequestMapping("/insert")
-    private Student getStudent(Student student){
+    private Student getStudent(Student student) {
         // studentService.save(student);
         System.out.println("student = [" + student + "]");
         return student;
     }
+
+
 }

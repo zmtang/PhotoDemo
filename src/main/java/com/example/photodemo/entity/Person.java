@@ -16,6 +16,7 @@ public class Person implements Serializable {
     private Integer age;
     private String home;
     private String job;
+    private String status;
 
     public Long getId() {
         return id;
@@ -57,6 +58,14 @@ public class Person implements Serializable {
         this.job = job;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -65,6 +74,7 @@ public class Person implements Serializable {
                 ", age=" + age +
                 ", home='" + home + '\'' +
                 ", job='" + job + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

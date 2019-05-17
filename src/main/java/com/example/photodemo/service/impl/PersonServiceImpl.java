@@ -7,24 +7,33 @@ import com.example.photodemo.service.PersonService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
+
 /**
  * 创建service实现类，实现service接口，继承ServiceImpl实现类
+ *
  * @author zmt
  * @date 2019-03-15 15:31
  */
 @Service
 public class PersonServiceImpl extends ServiceImpl<PersonMapper, Person> implements PersonService {
 
+    @Resource
+    private PersonMapper personMapper;
+
+    @Override
+    public PersonMapper getBaseMapper() {
+        return personMapper;
+    }
 
     /**
-     * 根据 name 获取个人信息
-     * baseMapper ？？？
+     *
      * @param name
      * @return
      */
     @Override
     public Person getByName(String name) {
-        return baseMapper.getByName(name);
+        return personMapper.getByName(name);
     }
 
     /**
@@ -39,7 +48,7 @@ public class PersonServiceImpl extends ServiceImpl<PersonMapper, Person> impleme
     @Override
     public Boolean insertTwoPerson(Person person1, Person person2) {
         this.save(person1);
-        System.out.println("模拟异常"+5/0);
+        System.out.println("模拟异常" + 5 / 0);
         this.save(person2);
         return null;
     }
